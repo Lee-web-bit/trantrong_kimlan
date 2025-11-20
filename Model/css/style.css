@@ -1,0 +1,730 @@
+/* style.css - Vibe Trắng Xám Tối Giản */
+:root {
+  --primary: #b4b1b1;   /* Xám nhạt - Màu chủ đạo */
+  --gold: #F7F7F7;      /* Trắng kem/Xám rất nhạt - Nền phụ */
+  --text: #36454F;      /* Xám đen - Màu chữ */
+  --bg: #FFFFFF;        /* Trắng tinh - Nền chính */
+  --heart: #EF5350;     /* Đỏ/Hồng (Màu nhấn) */
+  --light-gray: #EEEEEE; /* Xám sáng cho viền và nền header */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--light-gray); /* Nền tổng thể: Xám rất nhạt */
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative; 
+}
+
+/* Thêm viền bao quanh (Border effect) */
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0,0,0,0.05); /* Bóng cực nhẹ */
+  border-radius: 10px; 
+}
+
+/* Images */
+.cover-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1rem;
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
+}
+
+.couple-img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 10px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--gold); /* Nền header Trắng kem */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.header h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  margin-bottom: 0.5rem;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--text);
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.couple {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.heart-separator {
+  color: var(--heart);
+  font-size: 1.5rem;
+  margin: 0 5px;
+}
+
+.date-box {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.date-item {
+  text-align: center;
+  min-width: 60px;
+}
+
+.date-num {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  font-family: 'Playfair Display', serif;
+}
+
+.date-label {
+  font-size: 0.9rem;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Địa chỉ Nhà Trai/Gái & Tiệc Cưới */
+.venue-info-section {
+    padding: 0 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.venue {
+  font-size: 1rem;
+  color: var(--text);
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px dashed var(--light-gray); /* Viền mờ Xám sáng */
+  border-radius: 8px;
+}
+
+.venue strong {
+    color: var(--primary); /* Màu Xám Chủ đạo */
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.venue-detail, .venue-address {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+
+.map-link {
+  display: inline-block;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid var(--primary);
+  padding-bottom: 2px;
+  margin-top: 0.8rem;
+  transition: all 0.3s ease;
+}
+.map-link:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+/* Định kiểu cho Tiệc Cưới Chính Thức (nổi bật hơn) */
+.main-reception {
+    background: var(--gold); /* Nền Trắng kem */
+    border: 2px solid var(--primary); /* Viền màu Xám Chủ đạo */
+    padding: 1.2rem;
+    margin-top: 2rem;
+}
+
+
+/* Main Content */
+.main {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.main p {
+  margin-bottom: 1rem;
+}
+
+.poem {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  margin: 1.5rem 0;
+  line-height: 2;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.time-unit {
+  background: var(--gold); /* Màu Trắng kem */
+  color: var(--text);
+  padding: 0.8rem 0.5rem;
+  border-radius: 8px;
+  min-width: 65px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+}
+
+.time-num {
+  font-size: 1.8rem;
+  display: block;
+}
+
+.time-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.highlight {
+  background: var(--primary); /* Màu Xám Chủ đạo */
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+/* STORY & PHOTO GRID */
+.story-grid {
+    display: grid;
+    /* 2 cột có chiều rộng bằng nhau */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 8px; /* Khoảng cách nhỏ giữa các ô */
+    margin: 3rem auto;
+    max-width: 400px;
+    padding: 0 10px;
+}
+
+.grid-item {
+    min-height: 120px; /* Chiều cao tối thiểu cho mỗi ô */
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Định dạng các ô chứa chữ */
+.grid-text {
+    background: var(--gold); /* Màu nền trắng kem */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.grid-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--primary); /* Màu xám chủ đạo */
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.grid-text p {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Định dạng các ô chứa ảnh */
+[class^="grid-photo"] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Dùng box-shadow thay vì border để tạo hiệu ứng khung ảnh */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Ô ảnh chiếm 2 hàng (áp dụng cho story-3) */
+.story-grid .wide {
+    grid-row: span 2; 
+    min-height: 256px; /* 2 * 120px + 8px gap */
+}
+
+/* Định dạng ô trích dẫn (Quote) */
+.quote-box {
+    background: var(--primary); /* Đổi màu nền thành Xám chủ đạo */
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+}
+
+.quote-box .grid-title, .quote-box p {
+    color: white; /* Đổi màu chữ thành trắng */
+}
+
+.quote-symbol {
+    font-size: 3rem;
+    line-height: 0.8;
+    margin-bottom: 10px;
+}
+
+/* Điều chỉnh vị trí của quote-box để nó nằm dưới các phần tử khác */
+.story-grid .quote-box {
+    grid-column: span 1; /* Chỉ chiếm 1 cột trên mọi kích thước */
+}
+
+/* Calendar */
+.calendar {
+  margin: 2rem auto;
+  max-width: 300px;
+  text-align: center;
+}
+
+.month-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--primary); /* Màu Xám Chủ đạo */
+  margin-bottom: 0.5rem;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.day {
+  padding: 8px 4px;
+  border-radius: 8px;
+}
+
+.day.empty {
+  visibility: hidden;
+}
+
+.day.today {
+  background: var(--primary); /* Màu Xám Chủ đạo */
+  color: white;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 0 0 8px rgba(169, 169, 169, 0.7); 
+}
+
+.day.today::after {
+  content: '♥';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: var(--heart); /* Màu Nhấn */
+  animation: pulse 1.5s infinite;
+}
+
+.lunar {
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-top: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Confirmation Box Style */
+.confirm-box {
+    background: var(--gold); /* Màu Trắng kem */
+    color: var(--text);
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+    border: 3px solid var(--primary); /* Viền màu Xám Chủ đạo */
+}
+
+.confirm-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--heart); /* Màu Nhấn */
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.confirm-instruction {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.confirm-button {
+    display: inline-block;
+    background: var(--primary); /* Màu Xám Chủ đạo */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.confirm-button:hover {
+    background: #909090; 
+}
+
+.confirm-note {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-style: italic;
+}
+.confirmation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Khoảng cách giữa các trường input */
+    margin-bottom: 1.5rem;
+}
+
+.form-input, .form-input-number {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #DCDCDC; /* Viền xám nhạt */
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: white; /* Nền trắng */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus, .form-input-number:focus {
+    border-color: var(--primary); /* Focus vào màu xám chủ đạo */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(169, 169, 169, 0.2);
+}
+
+.form-input::placeholder, .form-input-number::placeholder {
+    color: #B0B0B0; /* Chữ gợi ý màu xám mờ */
+}
+
+.qr {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.qr img {
+  width: 150px;
+  height: 150px;
+  border: 8px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 16px;
+}
+
+.bride {
+  margin-top: 1.5rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.7rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.footer-poem {
+  font-style: italic;
+  color: var(--text);
+  margin: 1.5rem 0;
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+.made-by {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  color: #aaa;
+  font-size: 0.8rem;
+  background: var(--gold); 
+  border-top: 1px solid #eee;
+}
+
+/* Heart Animation */
+.heart {
+  color: var(--heart); 
+  font-size: 1.2rem;
+  animation: pulse 1.5s infinite;
+}
+
+/* Keyframe duy nhất được giữ lại */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Photo Section */
+.photo-section {
+  position: relative;
+  width: 90%; /* Chiếm 90% chiều rộng của container chính */
+  max-width: 380px; /* Giới hạn chiều rộng tối đa */
+  margin: 2.5rem auto 3rem auto; /* Canh giữa và tạo khoảng cách */
+  padding: 10px;
+  background: white;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  border-radius: 15px;
+  aspect-ratio: 4 / 5; /* Tỷ lệ khung hình gần giống ảnh cưới dọc */
+  display: flex; /* Dùng flexbox để chứa các phần tử con */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Đảm bảo không có gì tràn ra ngoài */
+}
+
+.main-photo-wrapper {
+    width: 95%;
+    height: 95%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.main-wedding-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo ảnh chính lấp đầy wrapper */
+  display: block;
+  border-radius: 10px;
+}
+
+.small-photo-wrapper {
+  position: absolute;
+  bottom: 15px; /* Điều chỉnh vị trí ảnh nhỏ */
+  right: 15px; /* Điều chỉnh vị trí ảnh nhỏ */
+  width: 40%; /* Kích thước ảnh nhỏ */
+  aspect-ratio: 1; /* Ảnh nhỏ là hình vuông */
+  overflow: hidden;
+  border-radius: 50%; /* Bo tròn thành hình tròn */
+  border: 5px solid white; /* Viền trắng */
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+  /* Loại bỏ animation cũ để AOS quản lý */
+}
+
+.small-wedding-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Save the Date Text */
+.save-the-date-text {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-family: 'Dancing Script', cursive; /* Sử dụng font chữ mềm mại */
+  font-size: 2.5rem; /* Kích thước chữ lớn */
+  color: var(--heart); /* Màu đỏ đô hoặc màu tương tự */
+  z-index: 10;
+  /* Loại bỏ animation cũ để AOS quản lý */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* I LOVE YOU Text */
+.i-love-you-text {
+  position: absolute;
+  top: 50%;
+  right: 10px; 
+  transform: translateY(-50%) rotate(90deg); /* Xoay 90 độ */
+  transform-origin: 100% 50%; /* Điểm xoay */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #c2c1c1; /* Màu xám nhạt */
+  letter-spacing: 2px;
+  /* Loại bỏ animation cũ để AOS quản lý */
+}
+
+/* Media Queries cho các kích thước màn hình nhỏ hơn */
+@media (max-width: 375px) {
+  .save-the-date-text {
+    font-size: 2rem; /* Giảm kích thước chữ trên màn hình nhỏ hơn */
+    left: 15px;
+  }
+  .i-love-you-text {
+    font-size: 1.2rem;
+    right: 5px;
+  }
+  .small-photo-wrapper {
+    width: 35%; /* Giảm kích thước ảnh nhỏ */
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .date-num { font-size: 2rem; }
+  .couple { font-size: 2rem; }
+  .time-num { font-size: 1.5rem; }
+  .time-unit { min-width: 60px; padding: 0.7rem 0.4rem; }
+  .highlight { font-size: 0.75rem; padding: 0.6rem 1rem; }
+  .main { padding: 1.5rem 1rem; }
+}
+
+/* POP-UP MODAL STYLE */
+.modal {
+    display: none; /* Ẩn ban đầu */
+    position: fixed; /* Luôn cố định trên màn hình */
+    z-index: 1000; /* Đảm bảo nó nằm trên tất cả các thành phần khác */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Nền mờ đen */
+    backdrop-filter: blur(3px); /* Hiệu ứng làm mờ nền */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* Đặt ở giữa màn hình */
+    padding: 30px 20px;
+    border: 3px solid var(--primary); /* Viền xám chủ đạo */
+    width: 90%;
+    max-width: 350px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.modal-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--heart); /* Màu nhấn (Đỏ/Hồng) */
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.close-button {
+    color: var(--primary);
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    margin-top: -10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text);
+    text-decoration: none;
+}
+
+/* --- Background 2 bên (Nhà Trai - Nhà Gái) --- */
+.split-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Đảm bảo background nằm dưới nội dung */
+  display: none; /* Mặc định ẩn trên di động */
+  background: var(--light-gray); /* Nền dự phòng cho màn hình lớn khi ảnh chưa load */
+}
+
+/* Ảnh nền bên trái (Nhà Trai) */
+.split-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  /* Thay thế bằng ảnh Nhà Trai của bạn */
+  background-image: url('../image/HTH08441.jpg'); 
+  background-size: cover;
+  background-position: center;
+  /* Lớp phủ màu đen và chế độ hòa trộn để làm mờ ảnh, tạo độ tương phản */
+  background-blend-mode: multiply; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  opacity: 1; /* Độ mờ */
+}
+
+/* Ảnh nền bên phải (Nhà Gái) */
+.split-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  /* Thay thế bằng ảnh Nhà Gái của bạn */
+  background-image: url('../image/HTH08654_1.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.5); 
+  opacity: 1; /* Độ mờ */
+}
+
+/* Kích hoạt background trên màn hình lớn (>= 900px) */
+@media (min-width: 900px) {
+  .split-background {
+    display: block; /* Hiện background 2 bên */
+  }
+  /* Cải thiện bóng đổ cho nội dung chính nổi bật hơn trên nền ảnh */
+  .container {
+    box-shadow: 0 0 50px rgba(0,0,0,0.4); 
+    border-radius: 15px;
+  }
+}
