@@ -822,34 +822,69 @@ body {
     min-height: 200px; /* Chiều cao tối thiểu cho mỗi ảnh nhỏ */
 }
 
-/* MEDIA QUERIES: Chuyển sang bố cục Stacked (1 cột) trên di động */
+/* --- MEDIA QUERIES: Đảm bảo hiển thị đúng trên di động (max-width 768px) --- */
 @media (max-width: 768px) {
+    
+    /* Thiết lập lại Grid Container chính thành 1 cột */
     .photo-section.new-grid-layout {
         grid-template-columns: 1fr; /* 1 cột duy nhất */
-        gap: 25px;
+        gap: 20px; /* Khoảng cách giữa các ảnh xếp chồng */
+        width: 95%;
+        margin: 30px auto;
+        padding: 0;
     }
-    
-    /* Trên di động, các ảnh sẽ xếp chồng lên nhau bình thường */
+
+    /* Đặt tất cả các cột thành block/flex để chúng xếp chồng lên nhau */
     .photo-column.left-main,
     .photo-column.center-stack,
     .photo-column.right-solo {
-        display: block; /* Bỏ flexbox và grid-column định nghĩa trước đó */
+        /* Đảm bảo chúng chiếm toàn bộ chiều rộng (1 cột) */
         grid-column: 1 / -1; 
+        display: block; /* Bỏ flexbox căn giữa dọc cho cột solo */
     }
 
+    /* Thiết lập lại cột xếp chồng để nó hiển thị 2 ảnh theo chiều dọc */
     .photo-column.center-stack {
-        display: flex;
+        display: flex; /* Dùng flexbox cho 2 ảnh nhỏ */
         flex-direction: column;
         gap: 20px;
     }
     
-    /* Thiết lập lại chiều cao cho ảnh trên di động */
+    /* Thiết lập lại chiều cao cho tất cả các ảnh trên di động */
     .grid-photo-item {
-        height: auto; 
-        max-height: none;
+        width: 100%;
+        height: auto; /* Rất quan trọng: cho phép chiều cao co giãn theo ảnh */
+        min-height: 250px; /* Chiều cao tối thiểu, có thể điều chỉnh */
+        object-fit: cover;
     }
     
+    /* Đảm bảo các ảnh đã bị fixed height trong desktop được reset */
+    .photo-span-two,
+    .photo-small-top,
+    .photo-small-bottom,
     .photo-solo {
-        height: auto;
+        height: auto; /* Bỏ các giá trị 100% hoặc 50% cũ */
+        max-height: 400px; /* Giới hạn chiều cao để ảnh không quá dài */
+    }
+
+    /* Giảm kích thước chữ highlight */
+    .highlight {
+        font-size: 1.2em;
+        margin: 15px auto;
+        letter-spacing: 1px;
+    }
+
+    .text-end-beginning {
+        font-size: 1.5em;
+        margin-top: 40px;
+    }
+
+    .text-love-freedom {
+        font-size: 1.1em;
+    }
+
+    .text-you-gentleness {
+        font-size: 1em;
+        margin-bottom: 40px;
     }
 }
