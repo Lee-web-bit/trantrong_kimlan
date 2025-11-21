@@ -135,6 +135,31 @@ function createConfetti() {
     animate();
 }
 
+// Parallax Logic
+function setupParallax() {
+    const mainPhotoWrapper = document.querySelector('.main-photo-wrapper');
+    if (!mainPhotoWrapper) return;
+
+    const photoSection = document.querySelector('.photo-overlay-section');
+    // Lấy vị trí scroll bắt đầu của section ảnh
+    const scrollOffset = photoSection ? photoSection.offsetTop : 0; 
+    
+    function handleParallax() {
+        const scrollPosition = window.scrollY;
+        
+        // >>> ĐIỀU CHỈNH: Tốc độ di chuyển Parallax quay về mức TINH TẾ (0.08) <<<
+        const moveValue = (scrollPosition - scrollOffset) * 0.08; 
+        
+        // Giới hạn di chuyển để không bị quá xa
+        if (Math.abs(moveValue) < 100) { 
+            mainPhotoWrapper.style.transform = `translateY(${moveValue}px)`;
+        }
+    }
+    
+    // Gán sự kiện cuộn
+    window.addEventListener('scroll', handleParallax);
+}
+
 // ----------------------------------------------------
 // GỘP TẤT CẢ LOGIC VÀ KHỞI TẠO AOS VÀO KHỐI 'load' DUY NHẤT
 // ----------------------------------------------------
@@ -144,6 +169,8 @@ window.addEventListener('load', () => {
     setInterval(updateCountdown, 1000); 
     renderCalendar();
     createConfetti();
+    // >>> KHÔI PHỤC: Khởi tạo hiệu ứng Parallax <<<
+    setupParallax(); 
 
     // 2. Khởi tạo AOS (Animation On Scroll)
     AOS.init({

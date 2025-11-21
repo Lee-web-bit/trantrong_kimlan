@@ -8,9 +8,10 @@
 }
 
 :root {
-  --primary: #b4b1b1;   /* Xám nhạt - Màu chủ đạo */
+  /* >>> ĐIỀU CHỈNH CHÍNH: Màu Xám nhạt -> Đen Ánh Than (Charcoal Black) <<< */
+  --primary: #424949;   /* Đen Ánh Than - Màu chủ đạo mới */
   --gold: #F7F7F7;      /* Trắng kem/Xám rất nhạt - Nền phụ */
-  --text: #36454F;      /* Xám đen - Màu chữ */
+  --text: #36454F;      /* Xám đen - Màu chữ (Giữ nguyên, tương phản tốt) */
   --text-1: #16151500;
   --bg: #FFFFFF;        /* Trắng tinh - Nền chính */
   --heart: #EF5350;     /* Đỏ/Hồng (Màu nhấn) */
@@ -75,7 +76,8 @@ body {
 .header h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 1.5rem;
-  color: var(--primary); /* Màu Xám Chủ đạo */
+  /* Dùng màu Đen Ánh Than mới */
+  color: var(--primary); 
   margin-bottom: 0.5rem;
 }
 
@@ -89,7 +91,8 @@ body {
 .couple {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
-  color: var(--primary); /* Màu Xám Chủ đạo */
+  /* Dùng màu Đen Ánh Than mới */
+  color: var(--primary); 
   margin: 1rem 0;
   font-weight: 500;
 }
@@ -552,6 +555,35 @@ body {
 
 /* Photo Section */
 
+/* --- START: THÊM SVG HIGHLIGHT VÀO BACKGROUND CỦA PHOTO OVERLAY SECTION (ĐÃ CHỈNH SỬA) --- */
+@keyframes subtleRotate {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    50% { transform: translateX(-50%) rotate(-3deg); }
+    100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* Chèn SVG hình trái tim lớn hoặc họa tiết nhẹ nhàng */
+.photo-overlay-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; /* Đặt vị trí giữa */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa */
+    width: 150%; 
+    height: 150%;
+    z-index: 0; 
+    opacity: 0.1 !important; /* Giữ độ mờ tinh tế */
+    pointer-events: none; 
+    
+    /* >>> ĐIỀU CHỈNH LỚN: Thay thế Vòng Tròn bằng Họa Tiết Lấp Lánh (Star Scatter) <<< */
+    /* Họa tiết Ngôi sao/Kim cương nhỏ ngẫu nhiên, màu Đen Ánh Than (#424949) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='%23424949'%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.3) translate(300, 300)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.2) translate(100, 500)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.4) translate(450, 50)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.35) translate(10, 10)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.25) translate(600, 350)'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80% !important; 
+    background-repeat: repeat; /* Thay đổi thành repeat để lấp đầy khu vực lớn hơn */
+    background-position: center center;
+    
+    animation: subtleRotate 10s alternate infinite; 
+}
 
 .main-photo-wrapper {
     width: 95%;
