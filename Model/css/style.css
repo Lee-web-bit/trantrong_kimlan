@@ -526,21 +526,7 @@ body {
 }
 
 /* Photo Section */
-.photo-section {
-  position: relative;
-  width: 90%; /* Chiếm 90% chiều rộng của container chính */
-  max-width: 380px; /* Giới hạn chiều rộng tối đa */
-  margin: 2.5rem auto 3rem auto; /* Canh giữa và tạo khoảng cách */
-  padding: 10px;
-  background: white;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-  border-radius: 15px;
-  aspect-ratio: 4 / 5; /* Tỷ lệ khung hình gần giống ảnh cưới dọc */
-  display: flex; /* Dùng flexbox để chứa các phần tử con */
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Đảm bảo không có gì tràn ra ngoài */
-}
+
 
 .main-photo-wrapper {
     width: 95%;
@@ -746,8 +732,7 @@ body {
   }
 }
 /* --- Bố cục 4 Ảnh Mới (Tái tạo ảnh mẫu) --- */
-
-.photo-section.new-grid-layout {
+.new-grid-layout {
     /* Thiết lập Grid Container chính */
     display: grid;
     /* Định nghĩa 3 cột: Cột 1 (lớn), Cột 2 (stack 2 ảnh nhỏ), Cột 3 (ảnh solo dọc) */
@@ -822,69 +807,104 @@ body {
     min-height: 200px; /* Chiều cao tối thiểu cho mỗi ảnh nhỏ */
 }
 
-/* --- MEDIA QUERIES: Đảm bảo hiển thị đúng trên di động (max-width 768px) --- */
+/* --- Bố cục 4 Ảnh Mới (Desktop) --- */
+/* Đã thay tên class từ .photo-section.new-grid-layout sang .new-photo-grid để tránh xung đột */
+.new-photo-grid {
+    /* Thiết lập Grid Container chính */
+    display: grid;
+    /* Định nghĩa 3 cột: Cột 1 (lớn), Cột 2 (stack 2 ảnh nhỏ), Cột 3 (ảnh solo dọc) */
+    grid-template-columns: 1.2fr 1fr 0.8fr; 
+    grid-template-rows: auto; 
+    gap: 15px; 
+    width: 95%; 
+    max-width: 1000px;
+    margin: 60px auto; 
+    padding: 0 10px;
+    position: relative;
+    /* Đảm bảo reset các thuộc tính cũ */
+    height: auto; 
+    border: none;
+    box-shadow: none;
+}
+/* Giữ nguyên các class con: .photo-column.left-main, .photo-column.center-stack, ... */
+/* ... (Bạn giữ nguyên phần CSS desktop này) ... */
+
+
+/* --- KHẮC PHỤC LỖI HIỂN THỊ TRÊN DI ĐỘNG (Mobile Fix 3.0) --- */
+/* --- MEDIA QUERIES (HỢP NHẤT VÀ KHẮC PHỤC LỖI TỪ 768px TRỞ XUỐNG) --- */
 @media (max-width: 768px) {
-    
-    /* Thiết lập lại Grid Container chính thành 1 cột */
-    .photo-section.new-grid-layout {
-        grid-template-columns: 1fr; /* 1 cột duy nhất */
-        gap: 20px; /* Khoảng cách giữa các ảnh xếp chồng */
-        width: 95%;
-        margin: 30px auto;
-        padding: 0;
+  .photo-small-top,
+    .photo-small-bottom,
+    .photo-span-two, /* reset luôn ảnh lớn */
+    .photo-solo {
+        /* Bỏ chiều cao tương đối và chuyển sang tự động */
+        height: auto !important; 
+        /* Đảm bảo chiều cao tối thiểu cho từng ảnh riêng lẻ */
+        min-height: 200px !important; 
     }
 
-    /* Đặt tất cả các cột thành block/flex để chúng xếp chồng lên nhau */
+    /* 1. RESET GRID CONTAINER */
+    .new-photo-grid { /* Đã thay tên class từ .photo-section.new-grid-layout */
+        display: block !important; /* Buộc phải xếp chồng */
+        width: 100% !important;
+        max-width: none !important;
+        margin: 30px auto !important;
+        padding: 0 15px !important;
+    }
+
+    /* 2. RESET CÁC CỘT (PHOTO-COLUMN) */
     .photo-column.left-main,
     .photo-column.center-stack,
     .photo-column.right-solo {
-        /* Đảm bảo chúng chiếm toàn bộ chiều rộng (1 cột) */
-        grid-column: 1 / -1; 
-        display: block; /* Bỏ flexbox căn giữa dọc cho cột solo */
+        display: block !important; 
+        width: 100% !important;
+        margin-bottom: 20px !important; 
+        grid-column: auto !important; 
+        grid-row: auto !important;
     }
 
-    /* Thiết lập lại cột xếp chồng để nó hiển thị 2 ảnh theo chiều dọc */
+    /* 3. RESET CỘT STACK (2 ảnh nhỏ) */
     .photo-column.center-stack {
-        display: flex; /* Dùng flexbox cho 2 ảnh nhỏ */
-        flex-direction: column;
-        gap: 20px;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important; /* Dùng lại gap 15px */
     }
-    
-    /* Thiết lập lại chiều cao cho tất cả các ảnh trên di động */
+
+    /* 4. BUỘC ẢNH PHẢI HIỂN THỊ VỚI CHIỀU CAO TỰ ĐỘNG */
     .grid-photo-item {
-        width: 100%;
-        height: auto; /* Rất quan trọng: cho phép chiều cao co giãn theo ảnh */
-        min-height: 250px; /* Chiều cao tối thiểu, có thể điều chỉnh */
-        object-fit: cover;
+        width: 100% !important;
+        height: auto !important; /* Đảm bảo chiều cao linh hoạt */
+        min-height: 250px !important; 
+        max-height: 400px !important;
+        object-fit: cover !important;
+        margin: 0 !important;
     }
     
-    /* Đảm bảo các ảnh đã bị fixed height trong desktop được reset */
+    /* 5. RESET CÁC THUỘC TÍNH CHIỀU CAO CỐ ĐỊNH TỪ DESKTOP */
     .photo-span-two,
     .photo-small-top,
     .photo-small-bottom,
     .photo-solo {
-        height: auto; /* Bỏ các giá trị 100% hoặc 50% cũ */
-        max-height: 400px; /* Giới hạn chiều cao để ảnh không quá dài */
+        height: auto !important; /* Đảm bảo các thuộc tính 100% hay 50% bị vô hiệu hóa */
+        min-height: 250px !important; /* Đặt lại min-height ở đây nếu cần */
     }
-
-    /* Giảm kích thước chữ highlight */
+    
+    /* 6. RESPONSIVE CHUNG (TỪ CSS GỐC CỦA BẠN) */
+    .date-num { font-size: 2rem; }
+    .couple { font-size: 2rem; }
+    .time-num { font-size: 1.5rem; }
+    .time-unit { min-width: 60px; padding: 0.7rem 0.4rem; }
+    .highlight { font-size: 0.75rem; padding: 0.6rem 1rem; }
+    .main { padding: 1.5rem 1rem; }
+    
+    /* Giảm kích thước chữ highlight cho mobile */
     .highlight {
         font-size: 1.2em;
         margin: 15px auto;
         letter-spacing: 1px;
     }
-
-    .text-end-beginning {
-        font-size: 1.5em;
-        margin-top: 40px;
-    }
-
-    .text-love-freedom {
-        font-size: 1.1em;
-    }
-
-    .text-you-gentleness {
-        font-size: 1em;
-        margin-bottom: 40px;
-    }
+    
 }
+
+/* XÓA HOẶC VÔ HIỆU HÓA CÁC MEDIA QUERY CŨ VỀ PHOTO-SECTION CŨ VÀ CÁC THUỘC TÍNH CŨ KHÔNG CẦN THIẾT */
+/* @media (max-width: 375px) và @media (max-width: 480px) (nếu bạn có) */
