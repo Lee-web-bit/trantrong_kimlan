@@ -731,29 +731,25 @@ body {
     border-radius: 15px;
   }
 }
-/* --- Bố cục 4 Ảnh Mới (Tái tạo ảnh mẫu) --- */
+/* --- Bố cục 4 Ảnh Mới: Phong cách Mẫu (Desktop) --- */
+/* --- Bố cục 4 Ảnh Mới: Phong cách Mẫu (Desktop) --- */
+/* --- Bố cục 4 Ảnh Mới: Phong cách Mẫu (Desktop) --- */
 .new-grid-layout {
-    /* Thiết lập Grid Container chính */
-    display: grid;
-    /* Định nghĩa 3 cột: Cột 1 (lớn), Cột 2 (stack 2 ảnh nhỏ), Cột 3 (ảnh solo dọc) */
-    grid-template-columns: 1.2fr 1fr 0.8fr; 
-    grid-template-rows: auto; /* Chiều cao tự động */
-    gap: 15px; /* Khoảng cách giữa các cột */
+    display: flex; /* CHUYỂN SANG FLEXBOX cho 2 cột chính */
+    gap: 15px; 
     width: 95%; 
-    max-width: 1000px;
+    max-width: 800px;
     margin: 60px auto; 
     padding: 0 10px;
     position: relative;
-    /* Reset lại nếu đã có CSS cũ cho .photo-section */
     height: auto; 
-    border: none;
-    box-shadow: none;
+    align-items: stretch; /* Đảm bảo 2 cột có cùng chiều cao */
 }
 
-/* Định dạng chung cho các hình ảnh */
+/* Định dạng chung cho tất cả các hình ảnh */
 .grid-photo-item {
     width: 100%;
-    height: 100%;
+    height: auto; 
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -765,146 +761,88 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Cột Ảnh Lớn (Cột 1) */
-.photo-column.left-main {
-    grid-column: 1 / 2;
-}
-
-/* Cột Xếp Chồng (Cột 2) - Dùng Flexbox để xếp 2 ảnh nhỏ dọc */
-.photo-column.center-stack {
-    grid-column: 2 / 3;
+/* 1. Cột Trái và Cột Phải (chia chiều rộng 1:1) */
+.photo-column.left-stack,
+.photo-column.right-stack {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Xếp các ảnh bên trong theo chiều dọc */
     gap: 15px;
+    flex: 1; /* Chiếm diện tích bằng nhau */
 }
 
-/* Cột Ảnh Solo (Cột 3) - Dùng Flexbox để căn giữa ảnh theo chiều dọc */
-.photo-column.right-solo {
-    grid-column: 3 / 4;
-    display: flex;
-    align-items: center; /* Căn giữa ảnh theo chiều dọc (chính xác như mẫu) */
-    justify-content: center;
+/* 2. Điều chỉnh Tỷ lệ Chiều cao cho 4 ảnh (QUAN TRỌNG) */
+.portrait-top { flex-grow: 1.1; }
+.portrait-bottom { flex-grow: 1; }
+.landscape-top { flex-grow: 1.3; }
+.landscape-bottom { flex-grow: 0.8; }
+
+/* Fix: Đảm bảo ảnh bên trong Flex item chiếm đúng không gian */
+.photo-column.left-stack img,
+.photo-column.right-stack img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
 }
 
-/* Kích thước cụ thể cho ảnh solo (chân dung) */
-.photo-solo {
-    /* Đảm bảo ảnh solo có chiều cao phù hợp để khớp với 2 ảnh bên cạnh */
-    height: 90%; 
-    max-height: 500px;
-    object-position: center top; /* Có thể điều chỉnh vị trí đối tượng nếu là ảnh chân dung */
-}
 
-/* Ảnh lớn bên trái (Chiếm hết chiều cao 2 ảnh nhỏ) */
-.photo-span-two {
-    height: 100%;
-    object-position: center;
-}
-
-/* Ảnh nhỏ bên phải */
-.photo-small-top,
-.photo-small-bottom {
-    height: 50%; /* Mỗi ảnh nhỏ chiếm 50% chiều cao của cột */
-    min-height: 200px; /* Chiều cao tối thiểu cho mỗi ảnh nhỏ */
-}
-
-/* --- Bố cục 4 Ảnh Mới (Desktop) --- */
-/* Đã thay tên class từ .photo-section.new-grid-layout sang .new-photo-grid để tránh xung đột */
-.new-photo-grid {
-    /* Thiết lập Grid Container chính */
-    display: grid;
-    /* Định nghĩa 3 cột: Cột 1 (lớn), Cột 2 (stack 2 ảnh nhỏ), Cột 3 (ảnh solo dọc) */
-    grid-template-columns: 1.2fr 1fr 0.8fr; 
-    grid-template-rows: auto; 
-    gap: 15px; 
-    width: 95%; 
-    max-width: 1000px;
-    margin: 60px auto; 
-    padding: 0 10px;
-    position: relative;
-    /* Đảm bảo reset các thuộc tính cũ */
-    height: auto; 
-    border: none;
-    box-shadow: none;
-}
-/* Giữ nguyên các class con: .photo-column.left-main, .photo-column.center-stack, ... */
-/* ... (Bạn giữ nguyên phần CSS desktop này) ... */
-
-
-/* --- KHẮC PHỤC LỖI HIỂN THỊ TRÊN DI ĐỘNG (Mobile Fix 3.0) --- */
-/* --- MEDIA QUERIES (HỢP NHẤT VÀ KHẮC PHỤC LỖI TỪ 768px TRỞ XUỐNG) --- */
+/* --- MEDIA QUERIES: KHẮC PHỤC BỐ CỤC 4 ẢNH TRÊN MOBILE (Giải pháp SỬ DỤNG GRID 2x2) --- */
 @media (max-width: 768px) {
-  .photo-small-top,
-    .photo-small-bottom,
-    .photo-span-two, /* reset luôn ảnh lớn */
-    .photo-solo {
-        /* Bỏ chiều cao tương đối và chuyển sang tự động */
-        height: auto !important; 
-        /* Đảm bảo chiều cao tối thiểu cho từng ảnh riêng lẻ */
-        min-height: 200px !important; 
-    }
-
-    /* 1. RESET GRID CONTAINER */
-    .new-photo-grid { /* Đã thay tên class từ .photo-section.new-grid-layout */
-        display: block !important; /* Buộc phải xếp chồng */
+    /* 1. CONTAINER chính: Chuyển sang Grid 2 cột */
+    .new-grid-layout { 
+        display: grid !important; 
+        grid-template-columns: 1fr 1fr !important; /* Quan trọng: 2 cột bằng nhau */
+        grid-auto-rows: auto !important; /* Chiều cao tự động */
+        
+        
         width: 100% !important;
-        max-width: none !important;
+        max-width: none !important; 
         margin: 30px auto !important;
         padding: 0 15px !important;
+        height: auto !important;
+        gap: 10px !important; /* Khoảng cách giữa các ảnh */
+    }
+    
+    /* 2. CÁC CỘT ẢNH CON: Biến mất cấu trúc, để ảnh con trở thành Grid Items */
+    .photo-column.left-stack,
+    .photo-column.right-stack {
+        /* Dùng Grid để đảm bảo chúng không chiếm hết 1 ô, nhưng chúng ta cần loại bỏ chúng */
+        display: contents; /* Loại bỏ phần tử chứa, để ảnh con là Grid Item */
+        flex: none !important; 
+        margin-bottom: 0 !important; 
+        gap: 0 !important; 
     }
 
-    /* 2. RESET CÁC CỘT (PHOTO-COLUMN) */
-    .photo-column.left-main,
-    .photo-column.center-stack,
-    .photo-column.right-solo {
+    /* 3. ĐIỀU CHỈNH 4 ẢNH CON (Bây giờ chúng là Grid Items) */
+    .grid-photo-item, 
+    .portrait-top,
+    .portrait-bottom,
+    .landscape-top,
+    .landscape-bottom {
+        /* Bỏ các quy tắc flex-grow/flex-basis */
+        flex-grow: 0 !important; 
+        flex-shrink: 0 !important;
+        flex-basis: auto !important;
+        
+        /* Buộc ảnh trở thành Block để lấp đầy ô Grid */
         display: block !important; 
+        
+        height: 100% !important; /* Lấp đầy ô Grid */
+        /* Đặt tỷ lệ cố định để đảm bảo ảnh không quá cao hoặc quá lùn */
+        aspect-ratio: 1/1 !important; /* Buộc ảnh là hình vuông */
         width: 100% !important;
-        margin-bottom: 20px !important; 
-        grid-column: auto !important; 
-        grid-row: auto !important;
-    }
-
-    /* 3. RESET CỘT STACK (2 ảnh nhỏ) */
-    .photo-column.center-stack {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important; /* Dùng lại gap 15px */
-    }
-
-    /* 4. BUỘC ẢNH PHẢI HIỂN THỊ VỚI CHIỀU CAO TỰ ĐỘNG */
-    .grid-photo-item {
-        width: 100% !important;
-        height: auto !important; /* Đảm bảo chiều cao linh hoạt */
-        min-height: 250px !important; 
-        max-height: 400px !important;
         object-fit: cover !important;
-        margin: 0 !important;
+        margin: 0 !important; 
     }
     
-    /* 5. RESET CÁC THUỘC TÍNH CHIỀU CAO CỐ ĐỊNH TỪ DESKTOP */
-    .photo-span-two,
-    .photo-small-top,
-    .photo-small-bottom,
-    .photo-solo {
-        height: auto !important; /* Đảm bảo các thuộc tính 100% hay 50% bị vô hiệu hóa */
-        min-height: 250px !important; /* Đặt lại min-height ở đây nếu cần */
-    }
-    
-    /* 6. RESPONSIVE CHUNG (TỪ CSS GỐC CỦA BẠN) */
-    .date-num { font-size: 2rem; }
-    .couple { font-size: 2rem; }
-    .time-num { font-size: 1.5rem; }
-    .time-unit { min-width: 60px; padding: 0.7rem 0.4rem; }
-    .highlight { font-size: 0.75rem; padding: 0.6rem 1rem; }
-    .main { padding: 1.5rem 1rem; }
-    
-    /* Giảm kích thước chữ highlight cho mobile */
-    .highlight {
-        font-size: 1.2em;
-        margin: 15px auto;
-        letter-spacing: 1px;
-    }
-    
-}
+    /* Xếp chồng ảnh thứ 2 và thứ 4 lên hàng tiếp theo (Để chúng xếp 2x2, cần thứ tự HTML phù hợp) */
+    /* Nếu bạn muốn 4 ảnh xếp dọc (1x4), hãy dùng media query của lần trước. */
+    /* Nếu bạn muốn 4 ảnh xếp 2x2, giữ nguyên đoạn này. */
 
-/* XÓA HOẶC VÔ HIỆU HÓA CÁC MEDIA QUERY CŨ VỀ PHOTO-SECTION CŨ VÀ CÁC THUỘC TÍNH CŨ KHÔNG CẦN THIẾT */
-/* @media (max-width: 375px) và @media (max-width: 480px) (nếu bạn có) */
+    /* --- Các quy tắc responsive chung khác của bạn (Giữ nguyên) --- */
+    .date-num { font-size: 2rem !important; }
+    .couple { font-size: 2rem !important; }
+    .time-num { font-size: 1.5rem !important; }
+    .time-unit { min-width: 60px !important; padding: 0.7rem 0.4rem !important; }
+    .highlight { font-size: 0.75rem !important; padding: 0.6rem 1rem !important; }
+    .main { padding: 1.5rem 1rem !important; }
+}
