@@ -148,7 +148,7 @@ function setupParallax() {
         const scrollPosition = window.scrollY;
         
         // >>> ĐIỀU CHỈNH: Tốc độ di chuyển Parallax quay về mức TINH TẾ (0.08) <<<
-        const moveValue = (scrollPosition - scrollOffset) * 0.08; 
+        const moveValue = (scrollPosition - scrollOffset) * 0.00; 
         
         // Giới hạn di chuyển để không bị quá xa
         if (Math.abs(moveValue) < 100) { 
