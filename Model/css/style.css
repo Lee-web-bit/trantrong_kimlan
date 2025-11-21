@@ -88,10 +88,10 @@ body {
 
 .couple {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: var(--primary); /* Màu Xám Chủ đạo */
   margin: 1rem 0;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .heart-separator {
@@ -128,18 +128,27 @@ body {
 }
 
 /* Địa chỉ Nhà Trai/Gái & Tiệc Cưới */
+/* --- SỬA ĐỔI: Bố cục 2 Cột song song cho Địa điểm Cưới (Desktop/Tablet) --- */
+
 .venue-info-section {
     padding: 0 1.5rem;
     margin-top: 1.5rem;
+    
+    /* THÊM: Kích hoạt Flexbox */
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 1.5rem; /* Khoảng cách giữa các cột */
+    justify-content: center;
 }
 
 .venue {
-  font-size: 1rem;
-  color: var(--text);
-  margin-top: 1rem;
-  padding: 1rem;
-  border: 1px dashed var(--light-gray); /* Viền mờ Xám sáng */
-  border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text);
+    /* margin-top: 1rem;  -> Đã loại bỏ vì Flexbox (gap) sẽ quản lý khoảng cách dọc */
+    padding: 1rem;
+    border: 1px dashed var(--light-gray); /* Viền mờ Xám sáng */
+    border-radius: 8px;
+    width: 100%; /* Mặc định 100% trên Mobile */
 }
 
 .venue strong {
@@ -150,10 +159,26 @@ body {
 }
 
 .venue-detail, .venue-address {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--text);
-  margin-top: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-top: 0.5rem;
+}
+
+/* MEDIA QUERY: Áp dụng 2 cột từ màn hình rộng 600px trở lên */
+@media (min-width: 600px) {
+    /* Đảm bảo chỉ áp dụng cho Nhà Trai/Nhà Gái (nếu có class wedding-home-info) 
+       hoặc áp dụng cho tất cả các .venue nếu bạn muốn 3 cột thành 2 cột và 1 cột cuối. */
+    .venue {
+        /* Chiếm gần 50% mỗi cột, trừ đi khoảng cách (gap: 1.5rem) */
+        width: calc(50% - 0.75rem); 
+    }
+    
+    /* Đảm bảo Tiệc Cưới Chính Thức (main-reception) luôn chiếm hết 100% */
+    .venue.main-reception {
+        width: 100%;
+        margin-top: 2rem; /* Giữ khoảng cách trên cho mục này */
+    }
 }
 
 .map-link {
@@ -783,8 +808,6 @@ body {
     height: 100%; 
     object-fit: cover;
 }
-
-
 /* --- MEDIA QUERIES: KHẮC PHỤC BỐ CỤC 4 ẢNH TRÊN MOBILE (Giải pháp SỬ DỤNG GRID 2x2) --- */
 @media (max-width: 768px) {
     /* 1. CONTAINER chính: Chuyển sang Grid 2 cột */
@@ -792,8 +815,6 @@ body {
         display: grid !important; 
         grid-template-columns: 1fr 1fr !important; /* Quan trọng: 2 cột bằng nhau */
         grid-auto-rows: auto !important; /* Chiều cao tự động */
-        
-        
         width: 100% !important;
         max-width: none !important; 
         margin: 30px auto !important;
@@ -801,7 +822,6 @@ body {
         height: auto !important;
         gap: 10px !important; /* Khoảng cách giữa các ảnh */
     }
-    
     /* 2. CÁC CỘT ẢNH CON: Biến mất cấu trúc, để ảnh con trở thành Grid Items */
     .photo-column.left-stack,
     .photo-column.right-stack {
@@ -811,7 +831,6 @@ body {
         margin-bottom: 0 !important; 
         gap: 0 !important; 
     }
-
     /* 3. ĐIỀU CHỈNH 4 ẢNH CON (Bây giờ chúng là Grid Items) */
     .grid-photo-item, 
     .portrait-top,
@@ -822,10 +841,8 @@ body {
         flex-grow: 0 !important; 
         flex-shrink: 0 !important;
         flex-basis: auto !important;
-        
         /* Buộc ảnh trở thành Block để lấp đầy ô Grid */
         display: block !important; 
-        
         height: 100% !important; /* Lấp đầy ô Grid */
         /* Đặt tỷ lệ cố định để đảm bảo ảnh không quá cao hoặc quá lùn */
         aspect-ratio: 1/1 !important; /* Buộc ảnh là hình vuông */
@@ -833,11 +850,9 @@ body {
         object-fit: cover !important;
         margin: 0 !important; 
     }
-    
     /* Xếp chồng ảnh thứ 2 và thứ 4 lên hàng tiếp theo (Để chúng xếp 2x2, cần thứ tự HTML phù hợp) */
     /* Nếu bạn muốn 4 ảnh xếp dọc (1x4), hãy dùng media query của lần trước. */
     /* Nếu bạn muốn 4 ảnh xếp 2x2, giữ nguyên đoạn này. */
-
     /* --- Các quy tắc responsive chung khác của bạn (Giữ nguyên) --- */
     .date-num { font-size: 2rem !important; }
     .couple { font-size: 2rem !important; }
