@@ -1,8 +1,17 @@
 /* style.css - Vibe Trắng Xám Tối Giản */
+@font-face {
+    font-family: 'Aquarelle';
+    src: url('../fonts/MajorMonoDisplay-Regular.ttf') format('ttf2'),
+         url('../fonts/MajorMonoDisplay-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
   --primary: #b4b1b1;   /* Xám nhạt - Màu chủ đạo */
   --gold: #F7F7F7;      /* Trắng kem/Xám rất nhạt - Nền phụ */
   --text: #36454F;      /* Xám đen - Màu chữ */
+  --text-1: #16151500;
   --bg: #FFFFFF;        /* Trắng tinh - Nền chính */
   --heart: #EF5350;     /* Đỏ/Hồng (Màu nhấn) */
   --light-gray: #EEEEEE; /* Xám sáng cho viền và nền header */
@@ -184,9 +193,17 @@ body {
 .poem {
   font-family: 'Dancing Script', cursive;
   font-size: 1.4rem;
-  color: var(--primary); /* Màu Xám Chủ đạo */
+  color: var(--text-1); /* Màu Xám Chủ đạo */
   margin: 1.5rem 0;
   line-height: 2;
+}
+.text-p{
+   font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: #000; /* Màu Xám Chủ đạo */
+  margin: 1.5rem 0;
+  line-height: 2;
+
 }
 
 .countdown {
@@ -727,4 +744,112 @@ body {
     box-shadow: 0 0 50px rgba(0,0,0,0.4); 
     border-radius: 15px;
   }
+}
+/* --- Bố cục 4 Ảnh Mới (Tái tạo ảnh mẫu) --- */
+
+.photo-section.new-grid-layout {
+    /* Thiết lập Grid Container chính */
+    display: grid;
+    /* Định nghĩa 3 cột: Cột 1 (lớn), Cột 2 (stack 2 ảnh nhỏ), Cột 3 (ảnh solo dọc) */
+    grid-template-columns: 1.2fr 1fr 0.8fr; 
+    grid-template-rows: auto; /* Chiều cao tự động */
+    gap: 15px; /* Khoảng cách giữa các cột */
+    width: 95%; 
+    max-width: 1000px;
+    margin: 60px auto; 
+    padding: 0 10px;
+    position: relative;
+    /* Reset lại nếu đã có CSS cũ cho .photo-section */
+    height: auto; 
+    border: none;
+    box-shadow: none;
+}
+
+/* Định dạng chung cho các hình ảnh */
+.grid-photo-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid-photo-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Cột Ảnh Lớn (Cột 1) */
+.photo-column.left-main {
+    grid-column: 1 / 2;
+}
+
+/* Cột Xếp Chồng (Cột 2) - Dùng Flexbox để xếp 2 ảnh nhỏ dọc */
+.photo-column.center-stack {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Cột Ảnh Solo (Cột 3) - Dùng Flexbox để căn giữa ảnh theo chiều dọc */
+.photo-column.right-solo {
+    grid-column: 3 / 4;
+    display: flex;
+    align-items: center; /* Căn giữa ảnh theo chiều dọc (chính xác như mẫu) */
+    justify-content: center;
+}
+
+/* Kích thước cụ thể cho ảnh solo (chân dung) */
+.photo-solo {
+    /* Đảm bảo ảnh solo có chiều cao phù hợp để khớp với 2 ảnh bên cạnh */
+    height: 90%; 
+    max-height: 500px;
+    object-position: center top; /* Có thể điều chỉnh vị trí đối tượng nếu là ảnh chân dung */
+}
+
+/* Ảnh lớn bên trái (Chiếm hết chiều cao 2 ảnh nhỏ) */
+.photo-span-two {
+    height: 100%;
+    object-position: center;
+}
+
+/* Ảnh nhỏ bên phải */
+.photo-small-top,
+.photo-small-bottom {
+    height: 50%; /* Mỗi ảnh nhỏ chiếm 50% chiều cao của cột */
+    min-height: 200px; /* Chiều cao tối thiểu cho mỗi ảnh nhỏ */
+}
+
+/* MEDIA QUERIES: Chuyển sang bố cục Stacked (1 cột) trên di động */
+@media (max-width: 768px) {
+    .photo-section.new-grid-layout {
+        grid-template-columns: 1fr; /* 1 cột duy nhất */
+        gap: 25px;
+    }
+    
+    /* Trên di động, các ảnh sẽ xếp chồng lên nhau bình thường */
+    .photo-column.left-main,
+    .photo-column.center-stack,
+    .photo-column.right-solo {
+        display: block; /* Bỏ flexbox và grid-column định nghĩa trước đó */
+        grid-column: 1 / -1; 
+    }
+
+    .photo-column.center-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Thiết lập lại chiều cao cho ảnh trên di động */
+    .grid-photo-item {
+        height: auto; 
+        max-height: none;
+    }
+    
+    .photo-solo {
+        height: auto;
+    }
 }
