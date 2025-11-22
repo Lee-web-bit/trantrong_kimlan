@@ -279,83 +279,99 @@ body {
 /* STORY & PHOTO GRID */
 .story-grid {
     display: grid;
-    /* 2 cột có chiều rộng bằng nhau */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 8px; /* Khoảng cách nhỏ giữa các ô */
-    margin: 3rem auto;
-    max-width: 400px;
-    padding: 0 10px;
+    grid-template-columns: 1fr 1fr; /* 2 cột cho desktop */
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 0 1rem;
 }
 
 .grid-item {
-    min-height: 120px; /* Chiều cao tối thiểu cho mỗi ô */
-    border-radius: 8px;
+    padding: 1rem;
+    border-radius: 10px;
     overflow: hidden;
-    position: relative;
-    padding: 15px;
-    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: white;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.grid-photo-1, .grid-photo-2, .grid-photo-3 {
+    background-size: cover;
+    background-position: center;
+    min-height: 200px;
+    border-radius: 10px;
+}
+
+.grid-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-/* Định dạng các ô chứa chữ */
-.grid-text {
-    background: var(--gold); /* Màu nền trắng kem */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    background: var(--gold);
+    color: var(--text);
 }
 
 .grid-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--primary); /* Màu xám chủ đạo */
-    margin-bottom: 5px;
-    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
 }
 
 .grid-text p {
-    font-size: 0.85rem;
-    color: var(--text);
-    line-height: 1.4;
-    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
-/* Định dạng các ô chứa ảnh */
-[class^="grid-photo"] {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Dùng box-shadow thay vì border để tạo hiệu ứng khung ảnh */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.wide {
+    grid-column: span 2; /* Chiếm 2 cột */
+    min-height: 250px;
 }
 
-/* Ô ảnh chiếm 2 hàng (áp dụng cho story-3) */
-.story-grid .wide {
-    grid-row: span 2; 
-    min-height: 256px; /* 2 * 120px + 8px gap */
-}
-
-/* Định dạng ô trích dẫn (Quote) */
 .quote-box {
-    background: var(--primary); /* Đổi màu nền thành Xám chủ đạo */
+    grid-column: span 2;
+    background: var(--primary);
     color: white;
     text-align: center;
-    padding: 20px 15px;
-}
-
-.quote-box .grid-title, .quote-box p {
-    color: white; /* Đổi màu chữ thành trắng */
+    padding: 2rem 1rem;
 }
 
 .quote-symbol {
-    font-size: 3rem;
-    line-height: 0.8;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    color: var(--heart);
+    margin-bottom: 1rem;
 }
 
-/* Điều chỉnh vị trí của quote-box để nó nằm dưới các phần tử khác */
-.story-grid .quote-box {
-    grid-column: span 1; /* Chỉ chiếm 1 cột trên mọi kích thước */
+.quote-box p {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .story-grid {
+        grid-template-columns: 1fr; /* 1 cột trên mobile */
+        gap: 1rem;
+    }
+
+    .wide, .quote-box {
+        grid-column: span 1; /* Không span trên mobile */
+    }
+
+    .grid-photo-1, .grid-photo-2, .grid-photo-3 {
+        min-height: 150px;
+    }
+
+    .quote-box {
+        padding: 1.5rem 1rem;
+    }
 }
 
 /* Calendar */
@@ -864,7 +880,7 @@ body {
         gap: 0 !important; 
     }
     /* 3. ĐIỀU CHỈNH 4 ẢNH CON (Bây giờ chúng là Grid Items) */
-    .grid-photo-item, 
+    .grid-photo-item,
     .portrait-top,
     .portrait-bottom,
     .landscape-top,
