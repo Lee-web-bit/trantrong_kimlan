@@ -8,8 +8,8 @@
 }
 
 :root {
-  /* >>> ĐIỀU CHỈNH CHÍNH: Màu Xám nhạt -> Đen Ánh Than (Charcoal Black) <<< */
-  --primary: #424949;   /* Đen Ánh Than - Màu chủ đạo mới */
+  /* >>> ĐIỀU CHỈNH CHÍNH: Màu Xám nhạt -> Đen Ảnh Than (Charcoal Black) <<< */
+  --primary: #424949;   /* Đen Ảnh Than - Màu chủ đạo mới */
   --gold: #F7F7F7;      /* Trắng kem/Xám rất nhạt - Nền phụ */
   --text: #36454F;      /* Xám đen - Màu chữ (Giữ nguyên, tương phản tốt) */
   --text-1: #16151500;
@@ -76,7 +76,7 @@ body {
 .header h1 {
   font-family: 'Dancing Script', cursive;
   font-size: 1.5rem;
-  /* Dùng màu Đen Ánh Than mới */
+  /* Dùng màu Đen Ảnh Than mới */
   color: var(--primary); 
   margin-bottom: 0.5rem;
 }
@@ -91,7 +91,7 @@ body {
 .couple {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
-  /* Dùng màu Đen Ánh Than mới */
+  /* Dùng màu Đen Ảnh Than mới */
   color: var(--primary); 
   margin: 1rem 0;
   font-weight: 500;
@@ -131,7 +131,7 @@ body {
 }
 
 /* Địa chỉ Nhà Trai/Gái & Tiệc Cưới */
-/* --- SỬA ĐỔI: Bố cục 2 Cột song song cho Địa điểm Cưới (Desktop/Tablet) --- */
+/* --- SỬA ĐỔI: Bỏ cục 2 Cột song song cho Địa điểm Cưới (Desktop/Tablet) --- */
 
 .venue-info-section {
     padding: 0 1.5rem;
@@ -384,6 +384,57 @@ body {
   text-align: center;
 }
 
+/* Gallery Grid - 8 ảnh */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 3rem auto;
+    max-width: 900px;
+    padding: 0 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    aspect-ratio: 1;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.gallery-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+
+/* Responsive cho tablet */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 0 1rem;
+    }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+/* Calendar */
+
 .month-year {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
@@ -613,7 +664,7 @@ body {
     pointer-events: none; 
     
     /* >>> ĐIỀU CHỈNH LỚN: Thay thế Vòng Tròn bằng Họa Tiết Lấp Lánh (Star Scatter) <<< */
-    /* Họa tiết Ngôi sao/Kim cương nhỏ ngẫu nhiên, màu Đen Ánh Than (#424949) */
+    /* Họa tiết Ngôi sao/Kim cương nhỏ ngẫu nhiên, màu Đen Ảnh Than (#424949) */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='%23424949'%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.3) translate(300, 300)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.2) translate(100, 500)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.4) translate(450, 50)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.35) translate(10, 10)'/%3E%3Cpath d='M100,20 l-4,10 l-11,0 l4,10 l-4,10 l11,0 l4,10 l4,-10 l11,0 l-4,-10 l4,-10 l-11,0 Z' transform='scale(0.25) translate(600, 350)'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 80% !important; 
     background-repeat: repeat; /* Thay đổi thành repeat để lấp đầy khu vực lớn hơn */
@@ -969,3 +1020,12 @@ body {
     .highlight { font-size: 0.75rem !important; padding: 0.6rem 1rem !important; }
     .main { padding: 1.5rem 1rem !important; }
 }
+ #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }

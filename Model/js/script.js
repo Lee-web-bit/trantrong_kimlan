@@ -1,6 +1,6 @@
 // script.js
-// Countdown to Oct 12, 2025 12:00 PM
-const weddingDate = new Date('2025-10-12T12:00:00');
+// Countdown to Dec 28, 2025 11:00 PM
+const weddingDate = new Date('2025-12-28T23:00:00');
 
 function updateCountdown() {
     const now = new Date();
@@ -63,8 +63,8 @@ function renderCalendar() {
     calendarDaysEl.innerHTML = html;
 }
 
-// Confetti Animation
-function createConfetti() {
+// Snow Effect Animation
+function createSnowEffect() {
     const canvas = document.getElementById('confetti-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -76,60 +76,55 @@ function createConfetti() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    const particles = [];
-    const colors = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#d4a373', '#f4e1c1'];
+    const snowflakes = [];
 
-    function Particle() {
+    function Snowflake() {
         this.x = Math.random() * canvas.width;
-        this.y = -Math.random() * canvas.height; 
-        this.size = Math.random() * 4 + 2;
+        this.y = -Math.random() * canvas.height;
+        this.size = Math.random() * 5 + 3; // Tăng kích thước lên
         this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 + 1;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.rotation = Math.random() * 360;
-        this.rotationSpeed = Math.random() * 0.2 + 0.05;
+        this.speedY = Math.random() * 3 + 1; // Tăng tốc độ rơi
+        this.opacity = Math.random() * 0.8 + 0.5;
     }
 
-    Particle.prototype.update = function() {
+    Snowflake.prototype.update = function() {
         this.x += this.speedX;
         this.y += this.speedY;
-        this.rotation += this.rotationSpeed;
         
-        if (this.y > canvas.height * 0.8 && this.size > 0) {
-            this.size -= 0.05;
+        if (this.y > canvas.height) {
+            this.y = -10;
+            this.x = Math.random() * canvas.width;
+        }
+        
+        if (this.x > canvas.width) {
+            this.x = 0;
+        } else if (this.x < 0) {
+            this.x = canvas.width;
         }
     };
 
-    Particle.prototype.draw = function() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation * Math.PI / 180);
-        ctx.fillStyle = this.color;
-        ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
-        ctx.restore();
+    Snowflake.prototype.draw = function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(239, 83, 80, ${this.opacity})`; // Màu đỏ
+        ctx.fill();
     };
 
-    function handleParticles() {
-        if (particles.length < 50 && (weddingDate - new Date()) > 0) {
-            particles.push(new Particle());
+    function handleSnowflakes() {
+        if (snowflakes.length < 150) { // Tăng số lượng tuyết
+            snowflakes.push(new Snowflake());
         }
 
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-
-            if (particles[i].size <= 0.2 || particles[i].y > canvas.height + 20) {
-                particles.splice(i, 1);
-                i--;
-            }
+        for (let i = 0; i < snowflakes.length; i++) {
+            snowflakes[i].update();
+            snowflakes[i].draw();
         }
     }
 
-    let animationFrameId;
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        handleParticles();
-        animationFrameId = requestAnimationFrame(animate);
+        handleSnowflakes();
+        requestAnimationFrame(animate);
     }
 
     animate();
@@ -168,7 +163,7 @@ window.addEventListener('load', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000); 
     renderCalendar();
-    createConfetti();
+    createSnowEffect();
     // >>> KHÔI PHỤC: Khởi tạo hiệu ứng Parallax <<<
     setupParallax(); 
 
@@ -241,3 +236,73 @@ window.addEventListener('load', () => {
         }
     }
 });
+// Snow Effect
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const snowflakes = [];
+
+        class Snowflake {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 2; // Tăng kích thước
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 + 1; // Tăng tốc độ rơi
+                this.opacity = Math.random() * 0.8 + 0.5; // Tăng độ mờ
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y > canvas.height) {
+                    this.y = -10;
+                    this.x = Math.random() * canvas.width;
+                }
+
+                if (this.x > canvas.width) {
+                    this.x = 0;
+                } else if (this.x < 0) {
+                    this.x = canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // Tạo tuyết rơi - TĂNG SỐ LƯỢNG
+        for (let i = 0; i < 150; i++) {
+            snowflakes.push(new Snowflake());
+        }
+
+        function animateSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+
+            requestAnimationFrame(animateSnow);
+        }
+
+        animateSnow();
+
+        // Log để kiểm tra
+        console.log('✅ AOS initialized');
+        console.log('✅ Snow effect running');
+        console.log('✅ Countdown running');
