@@ -357,16 +357,19 @@ body {
 /* Responsive cho mobile */
 @media (max-width: 768px) {
     .story-grid {
-        grid-template-columns: 1fr; /* 1 cột trên mobile */
-        gap: 1rem;
+        grid-template-columns: 1fr 1fr; /* 2 cột trên mobile để có cột */
+        gap: 0.8rem; /* Giảm gap để gọn hơn */
     }
 
     .wide, .quote-box {
         grid-column: span 1; /* Không span trên mobile */
     }
 
-    .grid-photo-1, .grid-photo-2, .grid-photo-3 {
-        min-height: 150px;
+    .grid-photo-1, .grid-photo-2  {
+        min-height: 120px; /* Giảm chiều cao tối thiểu để ảnh gọn hơn */
+    }
+    .grid-photo-3{
+      min-height: 110px
     }
 
     .quote-box {
@@ -703,6 +706,8 @@ body {
     overflow: auto;
     background-color: rgba(0,0,0,0.5); /* Nền mờ đen */
     backdrop-filter: blur(3px); /* Hiệu ứng làm mờ nền */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .modal-content {
@@ -715,6 +720,8 @@ body {
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
 }
 
 .modal-title {
@@ -744,6 +751,41 @@ body {
 .close-button:focus {
     color: var(--text);
     text-decoration: none;
+}
+
+/* Image Modal Styles */
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    padding: 20px;
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+#modalImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.modal.show .image-modal-content {
+    transform: scale(1);
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+    .image-modal-content {
+        max-width: 420px;
+        max-height: 80vh;
+        padding: 10px;
+    }
+
+    #modalImage {
+        width: 400px;
+        height: auto;
+        max-width: 100%;
+    }
 }
 
 /* --- Background 2 bên (Nhà Trai - Nhà Gái) --- */

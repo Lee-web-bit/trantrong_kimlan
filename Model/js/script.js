@@ -206,4 +206,38 @@ window.addEventListener('load', () => {
             modal.style.display = "none";
         }
     }
+
+    // Image Modal Logic
+    const imageModal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const imageClose = document.querySelector(".image-close");
+
+    // Add click event to all images
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('click', function(event) {
+            event.preventDefault();
+            modalImage.src = this.src;
+            imageModal.style.display = "block";
+            imageModal.classList.add('show');
+        });
+    });
+
+    if (imageClose) {
+        imageClose.onclick = function() {
+            imageModal.classList.remove('show');
+            setTimeout(() => {
+                imageModal.style.display = "none";
+            }, 300);
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == imageModal) {
+            imageModal.classList.remove('show');
+            setTimeout(() => {
+                imageModal.style.display = "none";
+            }, 300);
+        }
+    }
 });
